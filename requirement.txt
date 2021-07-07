@@ -1,1 +1,4 @@
 django==3.0.7
+gunicorn
+whitenoise
+Pillow==8.2.0

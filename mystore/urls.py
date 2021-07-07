@@ -14,10 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path
 from django.urls.conf import include
+from django.conf import settings
+from django.conf.urls.static import static
+
+def home(request):
+    return redirect('products_list')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('products.urls'))
-]
+    path('', home, name="home"),
+    path('', include('products.urls')),
+    path('', include('accounts.urls'))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # during development images dosn't show ,so we add this line

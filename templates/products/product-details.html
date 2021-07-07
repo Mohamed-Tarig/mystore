@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detials</title>
-</head>
-<body>
-    <h1>{{product.title}}</h1>
-    <p>{{product.description}}</p>
-</body>
-</html>
+{% extends "base.html" %}
+{% block head_title %}{{product.title | capfirst }}{% endblock %}
+
+{% block content %}
+<section class="single-product-details clearfix">
+    <div class="product-details-img">
+        <img src="{{product.image.url}}" alt="" />
+    </div>
+    <div class="product-details-desc">
+        <div class="product-brand">{{product.brand | capfirst }}</div>
+        <h2 class="product-name">{{product.title | capfirst }}</h2>
+        <div class="product-price">${{product.price | floatformat:2 }}</div>
+        <p class="product-desc">
+            {{product.description}}
+        </p>
+    </div>
+</section>
+{% endblock %}
